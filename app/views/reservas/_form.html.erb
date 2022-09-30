@@ -1,0 +1,37 @@
+<%= form_with(model: reserva, local: true) do |form| %>
+  <% if reserva.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(reserva.errors.count, "error") %> prohibited this reserva from being saved:</h2>
+
+      <ul>
+        <% reserva.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :data_entrada %>
+    <%= form.date_select :data_entrada %>
+  </div>
+
+  <div class="field">
+    <%= form.label :data_saida %>
+    <%= form.date_select :data_saida %>
+  </div>
+
+  <div class="field">
+    <%= form.label :hora_entrada %>
+    <%= form.time_select :hora_entrada %>
+  </div>
+
+  <div class="field">
+    <%= form.label :hora_saida %>
+    <%= form.time_select :hora_saida %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
