@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :usuarios
   resources :veiculos
   resources :reservas
   # root 'reservas#index'

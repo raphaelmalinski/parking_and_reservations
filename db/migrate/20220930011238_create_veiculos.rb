@@ -3,7 +3,7 @@ class CreateVeiculos < ActiveRecord::Migration[6.0]
     create_table :veiculos do |t|
       t.string :modelo
       t.string :marca
-      t.integer :ano
+      t.int :ano
       t.string :placa
 
       t.timestamps
