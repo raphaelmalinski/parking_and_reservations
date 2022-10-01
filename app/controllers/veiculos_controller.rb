@@ -22,7 +22,7 @@ class VeiculosController < ApplicationController
   # POST /veiculos or /veiculos.json
   def create
     @veiculo = Veiculo.new(veiculo_params)
-
+    @veiculo.usuario = Usuario.first
     respond_to do |format|
       if @veiculo.save
         format.html { redirect_to veiculo_url(@veiculo), notice: "Veiculo was successfully created." }
