@@ -1,33 +1,49 @@
-<p id="notice"><%= notice %></p>
+<h1 class="text-center mt-4">Minhas Reservas</h1>
 
-<h1>Reservas</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Data entrada</th>
-      <th>Data saida</th>
-      <th>Hora entrada</th>
-      <th>Hora saida</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @reservas.each do |reserva| %>
-      <tr>
-        <td><%= reserva.data_entrada %></td>
-        <td><%= reserva.data_saida %></td>
-        <td><%= reserva.hora_entrada %></td>
-        <td><%= reserva.hora_saida %></td>
-        <td><%= link_to 'Show', reserva %></td>
-        <td><%= link_to 'Edit', edit_reserva_path(reserva) %></td>
-        <td><%= button_to 'Delete', reserva_path(reserva), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Reserva', new_reserva_path %>
+<div class="container">
+  <% @reservas.each do |reserva| %>
+    <div class="row justify-content-md-center">
+      <div class="col-7 mt-4">
+        <div class="card text-center shadow mb-5 bg-white rounded">
+          <div class="card-body text-left">
+            <table>
+              <tr>
+                <td class="text-right pr-2"><strong>Data de entrada:</strong></td>
+                <td><%= reserva.data_entrada.strftime("%d/%m/%Y") %></td>
+              </tr>
+              <tr>
+                <td class="text-right pr-2"><strong>Data de saída:</strong></td>
+                <td><%= reserva.data_saida.strftime("%d/%m/%Y") %></td>
+              </tr>
+              <tr>
+                <td class="text-right pr-2"><strong>Hora de entrada:</strong></td>
+                <td><%= reserva.hora_entrada.strftime("%d/%m/%Y %H:%M") %></td>
+              </tr>
+              <tr>
+                <td class="text-right pr-2"><strong>Hora de saída:</strong></td>
+                <td><%= reserva.hora_saida.strftime("%d/%m/%Y %H:%M") %></td>
+              </tr>
+              <tr>
+                <td class="text-right pr-2"><strong>Veículo:</strong></td>
+                <td><%= reserva.veiculo.placa.upcase %></td>
+              </tr>
+            </table>
+            <div class="text-right mt-2">
+              <%= link_to 'Visualizar', reserva_path(reserva), class: 'btn btn-success' %>
+              <%= link_to 'Editar', edit_reserva_path(reserva), class: 'btn btn-info' %>
+              <%= link_to 'Excluir', reserva_path(reserva), class: 'btn btn-danger', 
+                                    method: :delete, data: { confirm: "Tem certeza que deseja excluir essa reserva?" } %>
+            </div>
+          </div>
+          
+          <div class="card-footer text-muted">
+            <small>
+              Criado há <%= time_ago_in_words(reserva.created_at) %>, 
+              modificado há <%= time_ago_in_words(reserva.updated_at) %>     
+            </small>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

@@ -1,4 +1,4 @@
 class Reserva < ApplicationRecord
     belongs_to :usuario
-    has_one :veiculo
+    belongs_to :veiculo
 end

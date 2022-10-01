@@ -6,6 +6,7 @@ class CreateReservas < ActiveRecord::Migration[6.0]
       t.time :hora_entrada
       t.time :hora_saida
       t.integer :usuario_id
+      t.integer :veiculo_id
 
       t.timestamps
     end

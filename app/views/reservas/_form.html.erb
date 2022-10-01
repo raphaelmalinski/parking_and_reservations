@@ -1,37 +1,43 @@
-<%= form_with(model: reserva, local: true) do |form| %>
-  <% if reserva.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(reserva.errors.count, "error") %> prohibited this reserva from being saved:</h2>
-
-      <ul>
-        <% reserva.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-10">
+      <%= render 'shared/errors' %>
+      <%= form_with(model: @reserva, class: 'shadow-light p-3 mb-3 bg-dark rounded', local: true) do |f| %>
+        <div class="form-group row">
+          <%= f.label :data_entrada, class: 'col-2 col-form-label text-light' %>
+          <div class="col-10">
+            <%= f.date_select :data_entrada, class: 'form-control shadow-light' %>
+          </div>
+        </div>
+        
+        <div class="form-group row">
+          <%= f.label :data_saida, class: 'col-2 col-form-label text-light' %>
+          <div class="col-10">
+            <%= f.date_select :data_saida, class: 'form-control shadow-light' %>
+          </div>
+        </div>
+        
+        <div class="form-group row">
+          <%= f.label :hora_entrada, class: 'col-2 col-form-label text-light' %>
+          <div class="col-10">
+            <%= f.time_select :hora_entrada, class: 'form-control shadow-light' %>
+          </div>
+        </div>
+        
+        <div class="form-group row">
+          <%= f.label :hora_saida, class: 'col-2 col-form-label text-light' %>
+          <div class="col-10">
+            <%= f.time_select :hora_saida, class: 'form-control shadow-light' %>
+          </div>
+        </div>
+        
+        <div class="form-group row justify-content-center">
+          <%= f.submit 'Reservar', class: 'btn btn-outline-light btn-lg' %>
+        </div>
+      <% end %> 
+      <div class="mb-4">
+        <%= link_to '[ Cancelar ]', reservas_path, class: 'row justify-content-center text-dark' %>
+      </div>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :data_entrada %>
-    <%= form.date_select :data_entrada %>
   </div>
-
-  <div class="field">
-    <%= form.label :data_saida %>
-    <%= form.date_select :data_saida %>
-  </div>
-
-  <div class="field">
-    <%= form.label :hora_entrada %>
-    <%= form.time_select :hora_entrada %>
-  </div>
-
-  <div class="field">
-    <%= form.label :hora_saida %>
-    <%= form.time_select :hora_saida %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>

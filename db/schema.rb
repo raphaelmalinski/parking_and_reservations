@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 2022_09_30_230127) do
     t.time "hora_entrada"
     t.time "hora_saida"
     t.integer "usuario_id"
+    t.integer "veiculo_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

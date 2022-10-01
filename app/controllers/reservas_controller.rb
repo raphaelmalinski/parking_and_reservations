@@ -23,6 +23,7 @@ class ReservasController < ApplicationController
   def create
     @reserva = Reserva.new(reserva_params)
     @reserva.usuario = Usuario.first
+    @reserva.veiculo = Veiculo.first
     respond_to do |format|
       if @reserva.save
         format.html { redirect_to reserva_url(@reserva), notice: "Reserva was successfully created." }
