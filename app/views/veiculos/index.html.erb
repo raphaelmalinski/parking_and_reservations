@@ -1,33 +1,44 @@
-<p id="notice"><%= notice %></p>
+<h1 class="text-center mt-4">Meus Veículos</h1>
 
-<h1>Veiculos</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Modelo</th>
-      <th>Marca</th>
-      <th>Ano</th>
-      <th>Placa</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @veiculos.each do |veiculo| %>
-      <tr>
-        <td><%= veiculo.modelo %></td>
-        <td><%= veiculo.marca %></td>
-        <td><%= veiculo.ano %></td>
-        <td><%= veiculo.placa %></td>
-        <td><%= link_to 'Show', veiculo %></td>
-        <td><%= link_to 'Edit', edit_veiculo_path(veiculo) %></td>
-        <td><%= link_to 'Destroy', veiculo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Veiculo', new_veiculo_path %>
+<div class="container">
+  <% @veiculos.each do |veiculo| %>
+    <div class="row justify-content-md-center">
+      <div class="col-7 mt-4">
+        <div class="card text-center shadow mb-5 bg-white rounded">
+          <div class="card-body text-left">
+            <table>
+              <tr>
+                <td class="text-right pr-2"><strong>Modelo:</strong></td>
+                <td><%= veiculo.modelo.capitalize! %></td>
+              </tr>
+              <tr>
+                <td class="text-right pr-2"><strong>Marca:</strong></td>
+                <td><%= veiculo.marca.capitalize! %></td>
+              </tr>
+              <tr>
+                <td class="text-right pr-2"><strong>Ano:</strong></td>
+                <td><%= veiculo.ano %></td>
+              </tr>
+              <tr>
+                <td class="text-right pr-2"><strong>Placa:</strong></td>
+                <td><%= veiculo.placa.upcase %></td>
+              </tr>
+            </table>
+            <div class="text-right mt-2">
+              <%= link_to 'Editar', edit_veiculo_path(veiculo), class: 'btn btn-info' %>
+              <%= link_to 'Excluir', veiculo_path(veiculo), class: 'btn btn-danger', 
+                                    method: :delete, data: { confirm: "Tem certeza que deseja excluir essa reserva?" } %>
+            </div>
+          </div>
+          
+          <div class="card-footer text-muted">
+            <small>
+              Criado há <%= time_ago_in_words(veiculo.created_at) %>, 
+              modificado há <%= time_ago_in_words(veiculo.updated_at) %>     
+            </small>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

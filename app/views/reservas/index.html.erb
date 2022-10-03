@@ -29,7 +29,6 @@
               </tr>
             </table>
             <div class="text-right mt-2">
-              <%= link_to 'Visualizar', reserva_path(reserva), class: 'btn btn-success' %>
               <%= link_to 'Editar', edit_reserva_path(reserva), class: 'btn btn-info' %>
               <%= link_to 'Excluir', reserva_path(reserva), class: 'btn btn-danger', 
                                     method: :delete, data: { confirm: "Tem certeza que deseja excluir essa reserva?" } %>

@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-7">
-      <%= render 'shared/errors' %>
+      <%= render 'errors' %>
       <%= form_with(model: @reserva, class: 'shadow-light p-3 mb-3 bg-dark rounded', local: true) do |f| %>
         <div class="form-group row">
           <%= f.label :data_entrada, class: 'col-3 col-form-label text-light' %>

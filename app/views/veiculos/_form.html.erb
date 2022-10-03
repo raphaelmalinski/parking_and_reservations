@@ -1,37 +1,43 @@
-<%= form_with(model: veiculo, local: true) do |form| %>
-  <% if veiculo.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(veiculo.errors.count, "error") %> prohibited this veiculo from being saved:</h2>
-
-      <ul>
-        <% veiculo.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-7">
+      <%= render 'errors' %>
+      <%= form_with(model: @veiculo, class: 'shadow-light p-3 mb-3 bg-dark rounded', local: true) do |f| %>
+        <div class="form-group row">
+          <%= f.label :modelo, class: 'col-3 col-form-label text-light' %>
+          <div class="col-9">
+            <%= f.text_field :modelo, class: 'form-control shadow-light' %>
+          </div>
+        </div>
+        
+        <div class="form-group row">
+          <%= f.label :marca, class: 'col-3 col-form-label text-light' %>
+          <div class="col-9">
+            <%= f.text_field :marca, class: 'form-control shadow-light' %>
+          </div>
+        </div>
+        
+        <div class="form-group row">
+          <%= f.label :ano, class: 'col-3 col-form-label text-light' %>
+          <div class="col-9">
+            <%= f.number_field :ano, class: 'form-control shadow-light' %>
+          </div>
+        </div>
+        
+        <div class="form-group row">
+          <%= f.label :placa, class: 'col-3 col-form-label text-light' %>
+          <div class="col-9">
+            <%= f.text_field :placa, class: 'form-control shadow-light' %>
+          </div>
+        </div>
+        
+        <div class="form-group row justify-content-center mt-4">
+          <%= f.submit 'Cadastrar Veículo', class: 'btn btn-outline-light btn-lg' %>
+        </div>
+      <% end %> 
+      <div class="mb-4">
+        <%= link_to '[ Cancelar ]', veiculos_path, class: 'row justify-content-center text-dark' %>
+      </div>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :modelo %>
-    <%= form.text_field :modelo %>
   </div>
-
-  <div class="field">
-    <%= form.label :marca %>
-    <%= form.text_field :marca %>
-  </div>
-
-  <div class="field">
-    <%= form.label :ano %>
-    <%= form.number_field :ano %>
-  </div>
-
-  <div class="field">
-    <%= form.label :placa %>
-    <%= form.text_field :placa %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>
