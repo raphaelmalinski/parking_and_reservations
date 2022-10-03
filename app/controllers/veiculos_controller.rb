@@ -6,10 +6,6 @@ class VeiculosController < ApplicationController
     @veiculos = Veiculo.all
   end
 
-  # GET /veiculos/1 or /veiculos/1.json
-  def show
-  end
-
   # GET /veiculos/new
   def new
     @veiculo = Veiculo.new
@@ -25,8 +21,8 @@ class VeiculosController < ApplicationController
     @veiculo.usuario = Usuario.first
     respond_to do |format|
       if @veiculo.save
-        format.html { redirect_to veiculo_url(@veiculo), notice: "Veiculo was successfully created." }
-        format.json { render :show, status: :created, location: @veiculo }
+        format.html { redirect_to veiculos_path, notice: "O veículo foi cadastrado com sucesso." }
+        format.json { render :index, status: :created, location: @veiculo }
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @veiculo.errors, status: :unprocessable_entity }
@@ -38,8 +34,8 @@ class VeiculosController < ApplicationController
   def update
     respond_to do |format|
       if @veiculo.update(veiculo_params)
-        format.html { redirect_to veiculo_url(@veiculo), notice: "Veiculo was successfully updated." }
-        format.json { render :show, status: :ok, location: @veiculo }
+        format.html { redirect_to veiculos_path, notice: "O veículo alterado com sucesso." }
+        format.json { render :index, status: :ok, location: @veiculo }
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @veiculo.errors, status: :unprocessable_entity }
@@ -52,7 +48,7 @@ class VeiculosController < ApplicationController
     @veiculo.destroy
 
     respond_to do |format|
-      format.html { redirect_to veiculos_url, notice: "Veiculo was successfully destroyed." }
+      format.html { redirect_to veiculos_url, notice: "O veículo foi removido com sucesso." }
       format.json { head :no_content }
     end
   end

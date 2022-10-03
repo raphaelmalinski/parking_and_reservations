@@ -31,6 +31,12 @@
           </div>
         </div>
         
+        <div class="form-group row">
+          <%= f.label :veiculo_id, class: 'col-3 col-form-label text-light' %>
+          <div class="col-9">
+            <%= f.select(:veiculo_id, options_for_select(Usuario.first.veiculos.pluck(:modelo, :placa, :id).to_a.map { |v| ["#{v.first} (#{v.second})", v[2]] }), class: 'select-veiculos') %>
+          </div>
+        </div>
         <div class="form-group row justify-content-center mt-4">
           <%= f.submit 'Reservar', class: 'btn btn-outline-light btn-lg' %>
         </div>

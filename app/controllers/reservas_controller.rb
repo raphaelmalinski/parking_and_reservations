@@ -23,11 +23,11 @@ class ReservasController < ApplicationController
   def create
     @reserva = Reserva.new(reserva_params)
     @reserva.usuario = Usuario.first
-    @reserva.veiculo = Veiculo.first
+    @reserva.veiculo = Veiculo.find(params['reserva']['veiculo_id'])
     respond_to do |format|
       if @reserva.save
-        format.html { redirect_to reserva_url(@reserva), notice: "Reserva was successfully created." }
-        format.json { render :show, status: :created, location: @reserva }
+        format.html { redirect_to reservas_path, notice: "A reserva foi criada com sucesso." }
+        format.json { render :index, status: :created, location: @reserva }
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @reserva.errors, status: :unprocessable_entity }
@@ -37,10 +37,11 @@ class ReservasController < ApplicationController
 
   # PATCH/PUT /reservas/1 or /reservas/1.json
   def update
+    @reserva.veiculo = Veiculo.find(params['reserva']['veiculo_id'])
     respond_to do |format|
       if @reserva.update(reserva_params)
-        format.html { redirect_to reserva_url(@reserva), notice: "Reserva was successfully updated." }
-        format.json { render :show, status: :ok, location: @reserva }
+        format.html { redirect_to reservas_path, notice: "A reserva foi alterada com sucesso." }
+        format.json { render :index, status: :ok, location: @reserva }
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @reserva.errors, status: :unprocessable_entity }
@@ -53,7 +54,7 @@ class ReservasController < ApplicationController
     @reserva.destroy
 
     respond_to do |format|
-      format.html { redirect_to reservas_url, notice: "Reserva was successfully destroyed." }
+      format.html { redirect_to reservas_url, notice: "A reserva foi removida com sucesso." }
       format.json { head :no_content }
     end
   end
